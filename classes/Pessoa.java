@@ -40,10 +40,6 @@ public class Pessoa {
         }
     }
 
-    public String toString() {
-        return "Nome: " + getPrimeiroNome() + " " + getSegundoNome() + "\nSexo: " + getSexo() + "\nPais de Origem: " + getPaisDeOrigem() + "\nData de nascimento: " + getDataNascimento();
-    }
-
     // Getters e Setters
     public int getId() {
         return id;
@@ -91,5 +87,9 @@ public class Pessoa {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+    
+    public String toString() {
+        return "Nome: " + getPrimeiroNome() + " " + getSegundoNome() + "\nSexo: " + getSexo() + "\nPais de Origem: " + getPaisDeOrigem() + "\nData de nascimento: " + getDataNascimento();
     }
 }
