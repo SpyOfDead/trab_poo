@@ -40,6 +40,7 @@ public class Pessoa {
         }
     }
 
+
     // Getters e Setters
     public int getId() {
         return id;
@@ -88,8 +89,26 @@ public class Pessoa {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
-    public String toString() {
-        return "Nome: " + getPrimeiroNome() + " " + getSegundoNome() + "\nSexo: " + getSexo() + "\nPais de Origem: " + getPaisDeOrigem() + "\nData de nascimento: " + getDataNascimento();
+
+    @Override
+    public boolean equals(Object o) {
+        if (o != null && this.getClass() == o.getClass()) {
+            Pessoa obj = (Pessoa) o;
+            return (id == obj.id && primeiroNome == obj.primeiroNome && segundoNome == obj.segundoNome && sexo == obj.sexo && paisDeOrigem == obj.paisDeOrigem && dataNascimento == obj.dataNascimento);
+        }
+        return false;
     }
+
+    @Override
+    public Object clone() {
+        Pessoa novaPessoa = new Pessoa(id, primeiroNome, segundoNome, sexo, paisDeOrigem, dataNascimento.getYear(), dataNascimento.getMonthValue(), dataNascimento.getDayOfMonth());
+        return novaPessoa;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + primeiroNome + " " + segundoNome + "\nSexo: " + sexo + "\nPais de Origem: " + paisDeOrigem + "\nData de nascimento: " + dataNascimento;
+    }
+
+
 }
