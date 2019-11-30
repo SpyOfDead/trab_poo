@@ -14,19 +14,19 @@ public class Artista extends Pessoa implements Serializable {
 
 
     // Outros Metodos
-    public double aumentarSalario(double percentagem) {
+    public void aumentarSalario(double percentagem) {
         if (percentagem > 0){
-            return salario = salario + ((percentagem/100) * salario);
+             salario = salario + ((percentagem/100) * salario);
         } else {
-            return 0;
+            // implementar exception
         }
     }
 
-    public double diminuirSalario(double percentagem) {
+    public void diminuirSalario(double percentagem) {
         if (percentagem > 0) {
-            return salario = salario * (percentagem/100);
+             salario = salario - ((percentagem/100) * salario);
         } else {
-            return 0;
+           // implementar exception
         }
     }
 
