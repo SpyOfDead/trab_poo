@@ -25,6 +25,12 @@ public class Pessoa {
         this.paisDeOrigem = paisDeOrigem;
         this.dataNascimento = LocalDate.of(anoNascimento, mesNascimento, diaNascimento);
     }
+    public Pessoa(int id , String primeiroNome, String segundoNome, int anoNascimento, int mesNascimento, int diaNascimento){
+        this.id = id;
+        this.paisDeOrigem = primeiroNome;
+        this.segundoNome = segundoNome;
+        this.dataNascimento = LocalDate.of(anoNascimento, mesNascimento, diaNascimento);
+    }
 
     public Pessoa(int id, String primeiroNome, String segundoNome) {
         this(id, primeiroNome, segundoNome, "Nao Definido", "Nao definido", 0, 0, 0);
