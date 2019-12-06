@@ -1,3 +1,7 @@
+package poo;
+
+import java.io.Serializable;
+
 public class Artista extends Pessoa implements Serializable {
 
     private String tipo;
@@ -6,30 +10,28 @@ public class Artista extends Pessoa implements Serializable {
 
     // Construtores
     public Artista(Pessoa p, String tipo, double salario){
-        super(p.getId(), p.getPrimeiroNome(), p.getSegundoNome(), p.getSexo(), p.getPaisDeOrigem(), p.getDataNascimento().getYear(),
-                p.getDataNascimento().getMonthValue(), p.getDataNascimento().getDayOfMonth());
+        super(p.getId(), p.getPrimeiroNome(), p.getSegundoNome(), p.getSexo(), p.getPaisDeOrigem(), p.getDataNascimento());
         this.tipo = tipo;
         this.salario = salario;
     }
 
 
     // Outros Metodos
-    public void aumentarSalario(double percentagem) {
+    public double aumentarSalario(double percentagem) {
         if (percentagem > 0){
-             salario = salario + ((percentagem/100) * salario);
+            return salario = salario + ((percentagem/100) * salario);
         } else {
-            // implementar exception
+            return 0;
         }
     }
 
-    public void diminuirSalario(double percentagem) {
+    public double diminuirSalario(double percentagem) {
         if (percentagem > 0) {
-             salario = salario - ((percentagem/100) * salario);
+            return salario = salario * (percentagem/100);
         } else {
-           // implementar exception
+            return 0;
         }
     }
-
 
     // Getters e Setters
     public String getTipo() {
