@@ -21,7 +21,8 @@ public class Espetaculo implements Serializable {
 		horaInicio = LocalTime.of(0, 0);
 		horaFim = LocalTime.of(0, 0);
 		tamanho = 100;
-		id = 1000 + total;
+		double nu = (Math.random()*100);
+		id = (int)nu%100;
 
 	}
 
@@ -32,7 +33,8 @@ public class Espetaculo implements Serializable {
 		this.data = data;
 		this.horaInicio = horaInicio;
 		this.horaFim = horaFim;
-		id = 1000 + total;
+		double nu = (Math.random()*1000);
+		id = (int)nu%1000;
 
 	}
 
