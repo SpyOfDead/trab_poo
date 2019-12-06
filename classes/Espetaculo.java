@@ -21,8 +21,8 @@ public class Espetaculo implements Serializable {
 		horaInicio = LocalTime.of(0, 0);
 		horaFim = LocalTime.of(0, 0);
 		tamanho = 100;
-		double nu = (Math.random()*100);
-		id = (int)nu%100;
+		double nu = (Math.random()*1000);
+		id = (int)nu%1000; //so faltou isso mals
 
 	}
 
