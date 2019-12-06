@@ -1,40 +1,35 @@
-import java.io.*;
+package projetoCompleto;
+
+import java.io.Serializable;
 import java.time.*;
 import java.util.ArrayList;
 
-//Vinicius Rodrigues Silva Costa, a40681
-//Fiz alguns comentarios para explicar a classe, se ficar muito poluido excluí
-
 public class Espetaculo implements Serializable {
 
-	private LocalTime duracao, horaInicio, horaFim; 	// A quantidade de tempo em horas e minuto, horarios de começo e fim do espetaculo
-	private static int total = 0; 						// o total de espetaculos
-	private String tipo, local; 						// Tipo de espetaculo que vai ocorrer, e o local onde vai ocorrer o espetaculo
-	private LocalDate data;								// A data que vai ocorrer o espetaculo
-	private int id; 									// Gera um id automatico ao cria
-	ArrayList<Espetaculo> espetaculo = new ArrayList();
-	
+	private LocalTime horaInicio, horaFim;
+	private static int total = 100;
+	private String local, tipo;
+	private LocalDate data;
+	private int id;
+	private int tamanho;
+	private ArrayList<Bilhete> bilhetes = new ArrayList<Bilhete>(tamanho);
+
 	public Espetaculo() {
 
-		total = total + 1;
-		tipo = "Não Definido!";
-		data = LocalDate.of(1, 1, 1); 					// Ano, mes, dia obs: Não consegui colocar a zero pois (ano) so vai de 1 a infinito, (mes)
-		local = tipo; 									// vai de 1 a 12 e dia depede do mes mas geralmente de 0 a 30
-		duracao = LocalTime.of(0, 0);
+		total = total - 1;
+		data = LocalDate.of(1, 1, 1);
+		local = "Não definido!";
 		horaInicio = LocalTime.of(0, 0);
 		horaFim = LocalTime.of(0, 0);
-		id = 1000 + total; 								// Gera um id automatico ao cria pode ser mudado se quiser
+		tamanho = 100;
+		id = 1000 + total;
 
 	}
 
-														//Achei melhor so colocar dois contructors pois o main teria um monte de opcoes e 
-														// daria mais trabalho para coloca no main entao preferi criar so dois
+	public Espetaculo(String tipo, String local, LocalDate data, LocalTime horaInicio, LocalTime horaFim, int tamanho) {
 
-	public Espetaculo(String tipo, String local, LocalTime duracao, LocalDate data, LocalTime horaInicio,LocalTime horaFim) {
-
-		total = total + 1;
-		this.duracao = duracao;
-		this.tipo = tipo;
+		total = total - 1;
+		this.tamanho = tamanho;
 		this.local = local;
 		this.data = data;
 		this.horaInicio = horaInicio;
@@ -43,124 +38,142 @@ public class Espetaculo implements Serializable {
 
 	}
 
-	public LocalTime getDuracao() {
-		return duracao;
-		
+	public void adicionarBiblete(Bilhete bilhete) {
+
+		bilhetes.add(bilhete);
+
 	}
 
-	public void setDuracao(int hora,int min) {
-		
-		duracao = LocalTime.of(hora, min);
-		
+	public Bilhete procurarBilhete(Pessoa pessoa) {
+
+		for (Bilhete i : bilhetes) {
+
+			if (pessoa.equals(i.getPessoa())) {
+
+				return i;
+
+			}
+
+		}
+		System.out.println("Não encontrado o bilhete comprado!\n");
+		return null;
+
 	}
 
-	public LocalTime getHoraInicio() {
-		
-		return horaInicio;
-		
-	}
+	public void removerBilhete(Pessoa pessoa) {
 
-	public void setHoraInicio(int hora,int min) {
-		
-		horaInicio = LocalTime.of(hora, min);
-		
-	}
+		for (Bilhete i : bilhetes) {
 
-	public LocalTime getHoraFim() {
-		
-		return horaFim;
-		
-	}
+			if (pessoa.equals(i.getPessoa())) {
 
-	public void setHoraFim(int hora,int min) {
-		
-		horaFim = LocalTime.of(hora, min);
-		
-	}
+				bilhetes.remove(i);
 
-	public String getTipo() {
-		
-		return tipo;
-		
-	}
+				System.out.println("Removido com sucesso!\n");
+				return;
 
-	public void setTipo(String tipo) {
-		
-		this.tipo = tipo;
-		
-	}
+			}
 
-	public String getLocal() {
-		
-		return local;
-		
-	}
+		}
 
-	public void setLocal(String local) {
-		
-		this.local = local;
-		
-	}
+		System.out.println("Não foi possivel remover,pois não exite este bilhete!\n");
 
-	public LocalDate getData() {
-		
-		return data;
-		
-	}
-
-	public void setData(int ano,int mes, int dia) {
-		
-		data = LocalDate.of(ano,mes,dia);
-		
-	}
-
-	public int getId() {
-		
-		return id;
-		
-	}
-
-	public void setId(int id) {
-		
-		this.id = id;
-		
-	}
-
-	public static int getTotal() {
-		
-		return total;
-		
 	}
 
 	public String toString() {
-		
-		return "Total de Espetaculos: " + total +", ID:  "+ id + ", Duração: " + duracao + ", Tipo: " + tipo + ", Local: " + local + ", Data: " + data
-				+ ", Hora de Início: " + horaInicio + ", Hora do Fim: " + horaFim;
-		
-	}													// quebrei a linha para não ficar muito grande mas funciona do mesmo jeito
+
+		return "Total de Espetaculos: " + total + "\nID:  " + id + "\nLocal: " + local + "\nData: " + data
+				+ "\nHora de Início: " + horaInicio + "\nHora do Fim: " + horaFim;
+
+	}
 
 	public Object clone() {
-		
-		Espetaculo aux = new Espetaculo(tipo, local, duracao, data, horaInicio, horaFim);
+
+		Espetaculo aux = new Espetaculo(tipo, local, data, horaInicio, horaFim, tamanho);
 		aux.setId(this.id);
 		return aux;
-		
+
 	}
-	
 
 	public boolean equals(Object espetaculo) {
-		if ( espetaculo != null && this.getClass() == espetaculo.getClass() ) {
-			
+		if (espetaculo != null && this.getClass() == espetaculo.getClass()) {
+
 			Espetaculo aux = (Espetaculo) espetaculo;
-		
-			return this.id == aux.id && this.local == aux.local && this.data == aux.data 
-					&& this.duracao == aux.duracao && this.horaFim == aux.horaFim 
-					&& this.horaInicio == aux.horaInicio && this.tipo == aux.tipo;
-			
-		}// quebrei a linha para não ficar muito grande mas funciona do mesmo jeito
-		
+
+			return this.id == aux.id && this.local == aux.local && this.data == aux.data && this.horaFim == aux.horaFim
+					&& this.horaInicio == aux.horaInicio && this.tipo == aux.tipo && this.tamanho == aux.tamanho;
+
+		}
+
 		return false;
-		
+
+	}
+
+	public LocalTime getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(LocalTime horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public LocalTime getHoraFim() {
+		return horaFim;
+	}
+
+	public void setHoraFim(LocalTime horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(int tamanho) {
+		this.tamanho = tamanho;
+	}
+
+	public ArrayList<Bilhete> getBilhetes() {
+		return bilhetes;
+	}
+
+	public void setBilhetes(ArrayList<Bilhete> bilhetes) {
+		this.bilhetes = bilhetes;
+	}
+
+	public static int getTotal() {
+		return total;
 	}
 
 }
