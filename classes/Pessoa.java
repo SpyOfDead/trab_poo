@@ -25,6 +25,7 @@ public class Pessoa {
         this.paisDeOrigem = paisDeOrigem;
         this.dataNascimento = LocalDate.of(anoNascimento, mesNascimento, diaNascimento);
     }
+
     public Pessoa(int id , String primeiroNome, String segundoNome, int anoNascimento, int mesNascimento, int diaNascimento){
         this.id = id;
         this.paisDeOrigem = primeiroNome;
@@ -32,14 +33,21 @@ public class Pessoa {
         this.dataNascimento = LocalDate.of(anoNascimento, mesNascimento, diaNascimento);
     }
 
+    public Pessoa(int id, String primeiroNome) {
+        this.id = id;
+        this.primeiroNome = primeiroNome;
+        this.dataNascimento = null;
+        this.paisDeOrigem = "Nao definido";
+        this.sexo = "Nao definido";
+    }
+
     public Pessoa(int id, String primeiroNome, String segundoNome) {
-        this(id, primeiroNome, segundoNome, "Nao Definido", "Nao definido", 0, 0, 0);
+        this(id, primeiroNome);
+        this.segundoNome = segundoNome;
     }
 
     public int calcularIdade() {
-
-        LocalDate dataDefault = LocalDate.of(0,0,0);
-        if ((dataNascimento != dataDefault)) {
+        if ((dataNascimento != null)) {
             return Period.between(dataNascimento, LocalDate.now()).getYears();
         } else {
             return 0;
