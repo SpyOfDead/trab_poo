@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Espetaculo implements Serializable {
 
 	private LocalTime horaInicio, horaFim;
-	private static int total = 100;
+	private int total = 100;
 	private String local, tipo;
 	private LocalDate data;
 	private int id;
@@ -16,7 +16,6 @@ public class Espetaculo implements Serializable {
 
 	public Espetaculo() {
 
-		total = total - 1;
 		data = LocalDate.of(1, 1, 1);
 		local = "Não definido!";
 		horaInicio = LocalTime.of(0, 0);
@@ -28,7 +27,6 @@ public class Espetaculo implements Serializable {
 
 	public Espetaculo(String tipo, String local, LocalDate data, LocalTime horaInicio, LocalTime horaFim, int tamanho) {
 
-		total = total - 1;
 		this.tamanho = tamanho;
 		this.local = local;
 		this.data = data;
@@ -41,6 +39,7 @@ public class Espetaculo implements Serializable {
 	public void adicionarBiblete(Bilhete bilhete) {
 
 		bilhetes.add(bilhete);
+		total = total - 1;
 
 	}
 
@@ -76,35 +75,6 @@ public class Espetaculo implements Serializable {
 		}
 
 		System.out.println("Não foi possivel remover,pois não exite este bilhete!\n");
-
-	}
-
-	public String toString() {
-
-		return "Total de Espetaculos: " + total + "\nID:  " + id + "\nLocal: " + local + "\nData: " + data
-				+ "\nHora de Início: " + horaInicio + "\nHora do Fim: " + horaFim;
-
-	}
-
-	public Object clone() {
-
-		Espetaculo aux = new Espetaculo(tipo, local, data, horaInicio, horaFim, tamanho);
-		aux.setId(this.id);
-		return aux;
-
-	}
-
-	public boolean equals(Object espetaculo) {
-		if (espetaculo != null && this.getClass() == espetaculo.getClass()) {
-
-			Espetaculo aux = (Espetaculo) espetaculo;
-
-			return this.id == aux.id && this.local == aux.local && this.data == aux.data && this.horaFim == aux.horaFim
-					&& this.horaInicio == aux.horaInicio && this.tipo == aux.tipo && this.tamanho == aux.tamanho;
-
-		}
-
-		return false;
 
 	}
 
@@ -172,8 +142,43 @@ public class Espetaculo implements Serializable {
 		this.bilhetes = bilhetes;
 	}
 
-	public static int getTotal() {
-		return total;
+	public String bilhetesDisponiveis() {
+		return "Tem " + total + " bilhetes disponiveis!\n";
+	}
+	@Override
+	public String toString() {
+
+		String aux = "| Total de Espetaculos: " + total + " | ID:  " + id + " | Local: " + local + " | Data: " + data
+				+ " | Hora de Início: " + horaInicio + " | Hora do Fim: " + horaFim + " |\n\n";
+		
+		for(Bilhete i : bilhetes) {
+			
+			aux = aux + "----- Bilhete -----\n\n" + i;
+		}
+		return aux;
+
+	}
+	@Override
+	public Object clone() {
+
+		Espetaculo aux = new Espetaculo(tipo, local, data, horaInicio, horaFim, tamanho);
+		aux.setId(this.id);
+		return aux;
+
+	}
+	@Override
+	public boolean equals(Object espetaculo) {
+		if (espetaculo != null && this.getClass() == espetaculo.getClass()) {
+
+			Espetaculo aux = (Espetaculo) espetaculo;
+
+			return this.id == aux.id && this.local == aux.local && this.data == aux.data && this.horaFim == aux.horaFim
+					&& this.horaInicio == aux.horaInicio && this.tipo == aux.tipo && this.tamanho == aux.tamanho;
+
+		}
+
+		return false;
+
 	}
 
 }
