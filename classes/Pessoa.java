@@ -131,5 +131,5 @@ public class Pessoa {
     public String toString() {
         return "ID: " + id +  "\nNome: " + primeiroNome + " " + segundoNome + "\nSexo: " + sexo + "\nPais de Origem: " + paisDeOrigem + "\nData de nascimento: " + dataNascimento;
     }
-    
+
 }
