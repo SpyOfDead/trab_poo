@@ -29,25 +29,6 @@ public class Bilhete {
 
 	}
 
-	public String toString() {
-		return "ID: " + id + "\nPreço: " + preco + "\n" + pessoa;
-	}
-
-	public boolean equals(Object bilhete) {
-		if (bilhete != null && this.getClass() == bilhete.getClass()) {
-
-			Bilhete aux = (Bilhete) bilhete;
-
-			return this.id == aux.id && this.preco == aux.preco && this.pessoa.equals(aux.getPessoa()); // pode conter
-																										// erro, não
-																										// verifiquei
-
-		}
-
-		return false;
-
-	}
-
 	public void descontoDoBilhete() {
 
 		int idade = pessoa.calcularIdade();
@@ -64,7 +45,7 @@ public class Bilhete {
 				preco = preco - preco * (10 / 100);
 
 			} else {
-				System.out.println("Sem desconto para adultos!\n");
+				System.out.println("Sem desconto!\n");
 			}
 		}
 
@@ -84,6 +65,23 @@ public class Bilhete {
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	public String toString() {
+		return "ID: " + id + "\nPreço: " + preco + "\n" + pessoa;
+	}
+
+	public boolean equals(Object bilhete) {
+		if (bilhete != null && this.getClass() == bilhete.getClass()) {
+
+			Bilhete aux = (Bilhete) bilhete;
+
+			return this.id == aux.id && this.preco == aux.preco && this.pessoa.equals(aux.getPessoa());
+
+		}
+
+		return false;
+
 	}
 
 }
