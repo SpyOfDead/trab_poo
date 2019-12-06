@@ -17,6 +17,15 @@ public class Pessoa {
 
     // Constructorores
 
+    public Pessoa(int id, String primeiroNome, String segundoNome, String sexo, String paisDeOrigem, LocalDate dataNascimento){
+        this.id = id;
+        this.primeiroNome = primeiroNome;
+        this.segundoNome = segundoNome;
+        this.sexo = sexo;
+        this.paisDeOrigem = paisDeOrigem;
+        this.dataNascimento = dataNascimento;
+    }
+
     public Pessoa(int id, String primeiroNome, String segundoNome, String sexo, String paisDeOrigem, int anoNascimento, int mesNascimento, int diaNascimento){
         this.id = id;
         this.primeiroNome = primeiroNome;
@@ -28,32 +37,31 @@ public class Pessoa {
 
     public Pessoa(int id , String primeiroNome, String segundoNome, int anoNascimento, int mesNascimento, int diaNascimento){
         this.id = id;
-        this.paisDeOrigem = primeiroNome;
+        this.primeiroNome = primeiroNome;
         this.segundoNome = segundoNome;
+        sexo = "Nao especificado!";
+        paisDeOrigem = "Nao especificado!";
         this.dataNascimento = LocalDate.of(anoNascimento, mesNascimento, diaNascimento);
     }
 
-    public Pessoa(int id, String primeiroNome) {
-        this.id = id;
-        this.primeiroNome = primeiroNome;
-        this.dataNascimento = null;
-        this.paisDeOrigem = "Nao definido";
-        this.sexo = "Nao definido";
-    }
 
     public Pessoa(int id, String primeiroNome, String segundoNome) {
-        this(id, primeiroNome);
+        this.id = id;
+        this.primeiroNome = primeiroNome;
         this.segundoNome = segundoNome;
+        dataNascimento = null;
+        paisDeOrigem = "Nao Especificado!!";
+        sexo = "Nao Especificado!";
     }
 
     public int calcularIdade() {
+
         if ((dataNascimento != null)) {
             return Period.between(dataNascimento, LocalDate.now()).getYears();
         } else {
             return 0;
         }
     }
-
 
     // Getters e Setters
     public int getId() {
@@ -115,14 +123,13 @@ public class Pessoa {
 
     @Override
     public Object clone() {
-        Pessoa novaPessoa = new Pessoa(id, primeiroNome, segundoNome, sexo, paisDeOrigem, dataNascimento.getYear(), dataNascimento.getMonthValue(), dataNascimento.getDayOfMonth());
+        Pessoa novaPessoa = new Pessoa(id, primeiroNome, segundoNome, sexo, paisDeOrigem, dataNascimento);
         return novaPessoa;
     }
 
     @Override
     public String toString() {
-        return "Nome: " + primeiroNome + " " + segundoNome + "\nSexo: " + sexo + "\nPais de Origem: " + paisDeOrigem + "\nData de nascimento: " + dataNascimento;
+        return "ID: " + id +  "\nNome: " + primeiroNome + " " + segundoNome + "\nSexo: " + sexo + "\nPais de Origem: " + paisDeOrigem + "\nData de nascimento: " + dataNascimento;
     }
-
-
+    
 }
