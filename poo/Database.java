@@ -7,11 +7,15 @@ import poo.Exceptions.*;
 
 public class Database {
 
+    public static final String FILE_PATH = "./data/";
+
     public static void guardarDados(ArrayList<Artista> listaArtista, ArrayList<Espetaculo> listaEspetaculo) {
 
         try {
-            ObjectOutputStream osA = new ObjectOutputStream(new FileOutputStream("./artistasDB.dat"));
-            ObjectOutputStream osE = new ObjectOutputStream(new FileOutputStream("./espetaculosDB.dat"));
+            File f = new File("./data/");
+            f.mkdir();
+            ObjectOutputStream osA = new ObjectOutputStream(new FileOutputStream(FILE_PATH + "artistasDB.dat"));
+            ObjectOutputStream osE = new ObjectOutputStream(new FileOutputStream( FILE_PATH + "espetaculosDB.dat"));
 
             osA.writeObject(listaArtista);
             osE.writeObject(listaEspetaculo);
@@ -28,7 +32,7 @@ public class Database {
 
         try {
 
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream("./artistasDB.dat"));
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILE_PATH + "artistasDB.dat"));
             listaArtista = (ArrayList<Artista>) is.readObject();
         } catch (ClassNotFoundException | IOException e) {
             System.out.println(e.getMessage());
@@ -39,7 +43,7 @@ public class Database {
     public static ArrayList<Espetaculo> lerEspetaculos(ArrayList<Espetaculo> listaEspetaculo) {
 
         try {
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream("./espetaculosDB.dat"));
+            ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILE_PATH + "espetaculosDB.dat"));
             listaEspetaculo = (ArrayList<Espetaculo>) is.readObject();
 
         } catch (ClassNotFoundException | IOException e) {
