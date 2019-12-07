@@ -59,7 +59,7 @@ public class Main {
                                     mes = Ler.umInt();
                                     System.out.println("Dia");
                                     dia = Ler.umInt();
-                                    System.out.println("Especialidade do Artista");
+                                    System.out.println("Tipo do Artista");
                                     tipo = Ler.umaString();
                                     System.out.println("Salario do Artista");
                                     salario = Ler.umDouble();
@@ -109,7 +109,7 @@ public class Main {
                                     dia = Ler.umInt();
                                     dataNascimento = LocalDate.of(ano, mes, dia);
                                     mod.setDataNascimento(dataNascimento);
-                                    System.out.println("Especialidade do Artista");
+                                    System.out.println("Tipo do Artista");
                                     mod.setTipo(Ler.umaString());
                                     System.out.println("Salario do Artista");
                                     mod.setSalario(Ler.umDouble());
@@ -563,7 +563,8 @@ public class Main {
                                             countPreco += b.getPreco();
                                         }
                                     }
-                                    System.out.println("Neste mes, o circo faturou " + countPreco + " $ em venda de bilhetes!");
+
+                                    System.out.println("Neste mes, o circo arrecadou " + countPreco + " $ com a venda de ingressos!");
                                     erro = false;
                                     countSalario = 0;
                                 } catch (Exception e) {
@@ -587,7 +588,7 @@ public class Main {
                                         countSalario += a.getSalario();
                                     }
 
-                                    System.out.println("Neste mes, o circo gastou " + countSalario + " $ em despezas!");
+                                    System.out.println("Neste mes, o circo gastou " + countSalario + " $ em despesas!");
                                     erro = false;
                                     countSalario = 0;
                                 } catch (Exception e) {
