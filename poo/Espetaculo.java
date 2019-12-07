@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class Espetaculo implements Serializable {
 
     private LocalTime horaInicio, horaFim;
-    private int total = 100;
     private String local, tipo;
     private LocalDate data;
     private int id;
     private int tamanho;
     private ArrayList<Bilhete> bilhetes = new ArrayList<Bilhete>(tamanho);
+    private int total;
 
     public Espetaculo() {
 
@@ -35,6 +35,7 @@ public class Espetaculo implements Serializable {
         this.horaFim = horaFim;
         double nu = (Math.random()*1000);
         id = (int)nu%1000;
+        total = tamanho - bilhetes.size();
 
     }
 
