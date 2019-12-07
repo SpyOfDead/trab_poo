@@ -1,6 +1,8 @@
 package poo;
 
-public class Bilhete {
+import java.io.Serializable;
+
+public class Bilhete implements Serializable {
 
     private int id;
     private double preco = 15;
