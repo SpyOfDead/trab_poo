@@ -19,11 +19,10 @@ public class Bilhete {
 
 	}
 
-	public Bilhete(int id, String primeiroNome, String segundoNome, String sexo, String paisDeOrigem, int anoNascimento,
+	public Bilhete(int id, String primeiroNome, String segundoNome, int anoNascimento,
 			int mesNascimento, int diaNascimento) {
 
-		pessoa = new Pessoa(id, primeiroNome, segundoNome, sexo, paisDeOrigem, anoNascimento, mesNascimento,
-				diaNascimento);
+		pessoa = new Pessoa(id, primeiroNome, segundoNome, anoNascimento, mesNascimento,diaNascimento);
 		this.id = id;
 		this.descontoDoBilhete();
 
