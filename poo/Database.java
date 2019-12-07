@@ -4,18 +4,19 @@ import java.io.*;
 import java.util.ArrayList;
 import poo.Exceptions.*;
 
-
 public class Database {
 
     public static final String FILE_PATH = "./data/";
+    public static final String artistaDB = "artistasDB.dat";
+    public static final String espetaculosDB = "espetaculosDB.dat";
 
     public static void guardarDados(ArrayList<Artista> listaArtista, ArrayList<Espetaculo> listaEspetaculo) {
 
         try {
             File f = new File("./data/");
             f.mkdir();
-            ObjectOutputStream osA = new ObjectOutputStream(new FileOutputStream(FILE_PATH + "artistasDB.dat"));
-            ObjectOutputStream osE = new ObjectOutputStream(new FileOutputStream( FILE_PATH + "espetaculosDB.dat"));
+            ObjectOutputStream osA = new ObjectOutputStream(new FileOutputStream(FILE_PATH + artistaDB));
+            ObjectOutputStream osE = new ObjectOutputStream(new FileOutputStream(FILE_PATH + espetaculosDB));
 
             osA.writeObject(listaArtista);
             osE.writeObject(listaEspetaculo);
@@ -29,29 +30,31 @@ public class Database {
     }
 
     public static ArrayList<Artista> lerArtistas(ArrayList<Artista> listaArtista) {
-
+        boolean exists = (new File(FILE_PATH + artistaDB)).exists();
         try {
-
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILE_PATH + "artistasDB.dat"));
-            listaArtista = (ArrayList<Artista>) is.readObject();
+            if (exists == true) {
+                ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILE_PATH + artistaDB));
+                listaArtista = (ArrayList<Artista>) is.readObject();
+            }
         } catch (ClassNotFoundException | IOException e) {
             System.out.println(e.getMessage());
         }
         return listaArtista;
+
     }
 
     public static ArrayList<Espetaculo> lerEspetaculos(ArrayList<Espetaculo> listaEspetaculo) {
-
+        boolean exists = (new File(FILE_PATH + espetaculosDB)).exists();
         try {
-            ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILE_PATH + "espetaculosDB.dat"));
-            listaEspetaculo = (ArrayList<Espetaculo>) is.readObject();
-
+            if (exists == true) {
+                ObjectInputStream is = new ObjectInputStream(new FileInputStream(FILE_PATH + espetaculosDB));
+                listaEspetaculo = (ArrayList<Espetaculo>) is.readObject();
+            }
         } catch (ClassNotFoundException | IOException e) {
             System.out.println(e.getMessage());
         }
         return listaEspetaculo;
     }
-
 
     public static ArrayList<Artista> adicionarArtista(ArrayList<Artista> listaArtistas, Artista a) throws ArtistaDuplicadoException {
         for (int i = 0; i < listaArtistas.size(); i++) {
@@ -65,7 +68,7 @@ public class Database {
 
     public static Artista acharArtistaPorID(ArrayList<Artista> listaArtistas, int id) throws ArtistaNaoEncontradoException {
         for (int i = 0; i < listaArtistas.size(); i++) {
-            if(listaArtistas.get(i).getId() == id) {
+            if (listaArtistas.get(i).getId() == id) {
                 return listaArtistas.get(i);
             }
         }
@@ -95,7 +98,7 @@ public class Database {
 
     public static Espetaculo acharEspetaculoPorID(ArrayList<Espetaculo> listaEspetaculos, int id) throws EspetaculoNaoEncontradoException {
         for (int i = 0; i < listaEspetaculos.size(); i++) {
-            if(listaEspetaculos.get(i).getId() == id) {
+            if (listaEspetaculos.get(i).getId() == id) {
                 return listaEspetaculos.get(i);
             }
         }
