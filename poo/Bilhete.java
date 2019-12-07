@@ -34,14 +34,11 @@ public class Bilhete implements Serializable {
 
             if (idade <= 9) {
 
-                preco = preco - preco * (25 / 100);
+                preco = 15 - ((15 * 50) / 100);
             }
             if (idade <= 18 && idade > 9) {
 
-                preco = preco - preco * (10 / 100);
-
-            } else {
-                System.out.println("Sem desconto!\n");
+            	preco = 15 - ((15 * 35) / 100);
             }
         }
 
@@ -64,7 +61,7 @@ public class Bilhete implements Serializable {
     }
 
     public String toString() {
-        return "ID: " + id + "\nPreço: " + preco + "\n" + pessoa;
+        return "ID: " + id + "\nPreço: " + preco + "\n" + pessoa + "\n\n";
     }
 
     public boolean equals(Object bilhete) {
