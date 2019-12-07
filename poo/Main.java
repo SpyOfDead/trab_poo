@@ -59,7 +59,7 @@ public class Main {
                                     mes = Ler.umInt();
                                     System.out.println("Dia");
                                     dia = Ler.umInt();
-                                    System.out.println("Tipo do Artista");
+                                    System.out.println("Especialidade do Artista");
                                     tipo = Ler.umaString();
                                     System.out.println("Salario do Artista");
                                     salario = Ler.umDouble();
@@ -111,7 +111,7 @@ public class Main {
                                     mod.setDataNascimento(dataNascimento);
                                     System.out.println("Tipo do Artista");
                                     mod.setTipo(Ler.umaString());
-                                    System.out.println("Salario do Artista");
+                                    System.out.println("Especialidade do Artista");
                                     mod.setSalario(Ler.umDouble());
                                     System.out.println(mod.toString());
                                     System.out.println("Artista modificado com sucesso!");
