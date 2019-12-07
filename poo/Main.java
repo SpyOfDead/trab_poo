@@ -1,10 +1,10 @@
-package projetoCompleto;
+package poo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class ola {
+public class Main {
     public static void main(String[] args) {
 
         ArrayList<Espetaculo> listaEspetaculo = new ArrayList<Espetaculo>();
@@ -18,8 +18,8 @@ public class ola {
 
         // Variaveis usadas
 
-        int id, idp, ano, mes, dia, duracaoH, duracaoM, horaInicioH, horaInicioM, horaFimH, horaFimM, tamanho, op = 1, count = 0;
-        String nome, primeiroNome, segundoNome, sexo, tipo, paisOrigem, local;
+        int id, idp, ano, mes, dia, horaInicioH, horaInicioM, horaFimH, horaFimM, tamanho, op = 1, count = 0;
+        String primeiroNome, segundoNome, sexo, tipo, paisOrigem, local;
         double salario, countSalario = 0, countPreco = 0;
         LocalDate dataNascimento;
         boolean erro = true;
@@ -226,9 +226,9 @@ public class ola {
                             while (erro == true) {
                                 try {
                                     if (listaArtista.size() < 1) {
-                                    System.out.println("A base de dados se encontra vazia!");
-                                    erro = false;
-                                    break;
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
                                     }
                                     for (Artista i : listaArtista ) {
                                         System.out.println(i.toString());
@@ -278,7 +278,7 @@ public class ola {
                                     Espetaculo espetaculo = new Espetaculo(tipo, local, LocalDate.of(ano, mes, dia), LocalTime.of(horaInicioH, horaInicioM), LocalTime.of(horaFimH, horaFimM), tamanho);
                                     listaEspetaculo.add(espetaculo);
                                     erro = false;
-                                    System.out.println("\nEspetaculo criado com sucesso!");
+                                    System.out.println("\nEspetaculo criado com sucesso!"+ "ID do Espetaculo: " + espetaculo.getId());
                                     Database.guardarDados(listaArtista, listaEspetaculo);
 
 
@@ -299,57 +299,72 @@ public class ola {
                                     Menu.menuBilheteria();
                                     switch(Ler.umInt()) {
                                         case 1:
-                                            while (erro == true) {
-                                                try {
-                                                    System.out.println("ID do Comprador");
-                                                    id = Ler.umInt();
-                                                    System.out.println("Primeiro Nome");
-                                                    primeiroNome = Ler.umaString();
-                                                    System.out.println("Ultimo Nome");
-                                                    segundoNome = Ler.umaString();
-                                                    Bilhete bilhete = new Bilhete(id, primeiroNome, segundoNome);
-                                                    i.adicionarBiblete(bilhete);
-                                                    erro = false;
-                                                    System.out.println("\nBilhete comprado com sucesso!");
-                                                    Database.guardarDados(listaArtista, listaEspetaculo);
+                                            System.out.println("Numero de bilhetes Disponiveis: " + (i.getTamanho() - i.getBilhetes().size()));
+                                            if(i.getBilhetes().size()<i.getTamanho()) {
+                                                while (erro == true) {
+                                                    try {
+                                                        System.out.println("ID do Comprador");
+                                                        id = Ler.umInt();
+                                                        System.out.println("Primeiro Nome");
+                                                        primeiroNome = Ler.umaString();
+                                                        System.out.println("Ultimo Nome");
+                                                        segundoNome = Ler.umaString();
+                                                        Bilhete bilhete = new Bilhete(id, primeiroNome, segundoNome);
+                                                        i.adicionarBiblete(bilhete);
+                                                        erro = false;
+                                                        System.out.println("\nBilhete comprado com sucesso!");
+                                                        Database.guardarDados(listaArtista, listaEspetaculo);
 
-                                                } catch (Exception e) {
-                                                    erro = true;
-                                                    System.out.println("Dados introduzidos incorretos!" + e.getMessage());
+                                                    } catch (Exception e) {
+                                                        erro = true;
+                                                        System.out.println("Dados introduzidos incorretos!" + e.getMessage());
+                                                    }
                                                 }
+                                            }else {
+                                                System.out.println("O Espetaculo Esta Lotado!");
                                             }
-                                            System.out.println("Digite algo para continuar!");
+                                            System.out.println("\nDigite algo para continuar!");
                                             Ler.umaString();
                                             erro = true;
                                             break;
                                         case 2:
-                                            while (erro == true) {
-                                                try {
-                                                    System.out.println("ID do Comprador");
-                                                    id = Ler.umInt();
-                                                    System.out.println("Primeiro Nome");
-                                                    primeiroNome = Ler.umaString();
-                                                    System.out.println("Ultimo Nome");
-                                                    segundoNome = Ler.umaString();
-                                                    System.out.println("Ano");
-                                                    ano = Ler.umInt();
-                                                    System.out.println("Mês");
-                                                    mes = Ler.umInt();
-                                                    System.out.println("Dia");
-                                                    dia = Ler.umInt();
-                                                    primeiroNome = Ler.umaString();
-                                                    Bilhete bilhete = new Bilhete(id, primeiroNome, segundoNome, ano, mes, dia);
-                                                    i.adicionarBiblete(bilhete);
-                                                    erro = false;
-                                                    System.out.println("\nBilhete com desconto comprado com sucesso!");
-                                                    Database.guardarDados(listaArtista, listaEspetaculo);
+                                            System.out.println("Numero de bilhetes Disponiveis: " + (i.getTamanho() - i.getBilhetes().size()));
+                                            if(i.getBilhetes().size()<i.getTamanho()) {
+                                                while (erro == true) {
+                                                    try {
+                                                        System.out.println("Só são admimitidos a descontros jovens de ate 18 ano de idade!\n");
+                                                        System.out.println("ID do Comprador");
+                                                        id = Ler.umInt();
+                                                        System.out.println("Primeiro Nome");
+                                                        primeiroNome = Ler.umaString();
+                                                        System.out.println("Ultimo Nome");
+                                                        segundoNome = Ler.umaString();
+                                                        System.out.println("Ano");
+                                                        ano = Ler.umInt();
+                                                        System.out.println("Mês");
+                                                        mes = Ler.umInt();
+                                                        System.out.println("Dia");
+                                                        dia = Ler.umInt();
+                                                        Bilhete bilhete = new Bilhete(id, primeiroNome, segundoNome, ano, mes, dia);
+                                                        bilhete.getPessoa().calcularIdade();
+                                                        i.adicionarBiblete(bilhete);
+                                                        erro = false;
 
-                                                } catch (Exception e) {
-                                                    erro = true;
-                                                    System.out.println("Dados introduzidos incorretos!" + e.getMessage());
+                                                        if(bilhete.getPreco() != 15) {
+                                                            System.out.println("\nBilhete com desconto comprado com sucesso!");
+                                                        }else {
+                                                            System.out.println("\nBilhete sem desconto comprado com sucesso");
+                                                        }
+                                                        Database.guardarDados(listaArtista, listaEspetaculo);
+
+                                                    } catch (Exception e) {
+                                                        erro = true;
+                                                        System.out.println("Dados introduzidos incorretos!" + e.getMessage());
+                                                    }
                                                 }
                                             }
-                                            System.out.println("Digite algo para continuar!");
+
+                                            System.out.println("\nDigite algo para continuar!");
                                             Ler.umaString();
                                             erro = true;
                                             break;
@@ -431,29 +446,58 @@ public class ola {
                             erro = true;
                             break;
                         case 2:
-                        	System.out.println("Forneça o ID do espetaculo: ");
-                            id = Ler.umInt();
-                            for (Espetaculo i : listaEspetaculo) {
-                                if(i.getId() == id) {
-                                		System.out.println("Horario do Inicio do Espetaculo "+ i.getHoraInicio() + "\nHorario do Fim do Espetaculo " + i.getHoraFim());
-                                    break;
+                            if(listaEspetaculo.size() == 0) {
+                                System.out.println("Não há Espetaculo no Momento!");
+                            }else {
+                                System.out.println("Forneça o ID do espetaculo: ");
+                                id = Ler.umInt();
+                                for (Espetaculo i : listaEspetaculo) {
+                                    if(i.getId() == id) {
+                                        System.out.println("Horario do Inicio do Espetaculo "+ i.getHoraInicio() + "\nHorario do Fim do Espetaculo " + i.getHoraFim());
+                                        break;
+                                    }
                                 }
                             }
+                            System.out.println("\nDigite algo para continuar!");
+                            Ler.umaString();
                             break;
                         case 3:
-                        	Espetaculo espetaculo = null;
-                            for(Espetaculo i: listaEspetaculo) {
-                            	if(espetaculo == null) {
-                            		espetaculo = i;
-                            	}
-                            	else {
-                            		if(espetaculo.getBilhetes().size() <= i.getBilhetes().size()) {
-                            			espetaculo = i;
-                            		}
-                            	}
+                            while (erro == true) {
+                                try {
+                                    Espetaculo espe = null;
+                                    if(listaEspetaculo.size() == 0) {
+                                        System.out.println("Não Ha Espetaculo  no Momento!");
+                                        break;
+                                    }else {
+                                        for(Espetaculo i: listaEspetaculo) {
+                                            if(espe == null) {
+                                                espe = i;
+                                            }
+                                            else {
+                                                if(espe.getBilhetes().size() <= i.getBilhetes().size()) {
+                                                    espe = i;
+                                                    erro = false;
+                                                }
+                                            }
+                                        }
+                                        if(espe.getBilhetes().size() == 0) {
+                                            System.out.println("Nenhum Bilhete comprado");
+                                        }
+                                        else {
+                                            System.out.println("ID do Espetaculo mais Visto: "+ espe.getId() + " Com " + espe.getBilhetes().size() + " Vizitantes\n");
+                                        }
+
+                                    }
+
+                                    erro = false;
+                                }catch(Exception e){
+                                    erro = true;
+                                    System.out.println(e.getMessage());
+                                }
                             }
-                            
-                            System.out.println("ID do Espetaculo mais Visto: "+ espetaculo.getId() + "Com " + espetaculo.getBilhetes().size() + " Vizitantes\n");
+
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
                             break;
                         case 4:
                             while (erro == true) {
@@ -487,17 +531,25 @@ public class ola {
                                 System.out.println(listaArtista.size() > 1 ? "No momento trabalham " + listaArtista.size() + " artistas no circo"
                                         : "No momento, apenas 1 artista trabalha no circo");
                             }
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
                             break;
-                        case 6:                        	
-	                        int total = 0; 
-	                        for (Espetaculo i : listaEspetaculo) {
-	                        	
-	                        	if(i.getData().getDayOfYear() < LocalDate.now().getDayOfYear()) {
-	                        		total++;
-	                        	}
-	                        }
-                        System.out.println("O Total de Espetaculos Já Realizados: "+ total);
-                        break;
+                        case 6:
+                            if(listaEspetaculo.size() == 0) {
+                                System.out.println("Não há Espetaculo no Momento!");
+                            }else {
+                                int total = 0;
+                                for (Espetaculo i : listaEspetaculo) {
+
+                                    if(i.getData().getDayOfYear() < LocalDate.now().getDayOfYear()) {
+                                        total++;
+                                    }
+                                }
+                                System.out.println("O Total de Espetaculos Já Realizados: "+ total);
+                            }
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
+                            break;
                         case 7:
                             while (erro == true) {
                                 try {
@@ -511,8 +563,7 @@ public class ola {
                                             countPreco += b.getPreco();
                                         }
                                     }
-
-                                    System.out.println("Neste mes, o circo gastou " + countSalario + " $ em despezas!");
+                                    System.out.println("Neste mes, o circo faturou " + countPreco + " $ em venda de bilhetes!");
                                     erro = false;
                                     countSalario = 0;
                                 } catch (Exception e) {
@@ -549,17 +600,21 @@ public class ola {
                             erro = true;
                             break;
                         case 9:
-                        	int ingresso = 0;
-                        	for(Espetaculo i: listaEspetaculo) {
-                        		
-                        		for(Bilhete a: i.getBilhetes()) {
-                        			System.out.println(a.toString());
-                        			ingresso++;
-                        		}
-                        	}
-                        	System.out.println("\n\nQuantidade de ingressos vendidos: "+ ingresso);
-                            System.out.println("Digite algo para continuar!");
-                            Ler.umaString();
+                            if(listaEspetaculo.size() == 0) {
+                                System.out.println("Não há Espetaculo no Momento!");
+                            }else {
+                                int ingresso = 0;
+                                for(Espetaculo i: listaEspetaculo) {
+
+                                    for(Bilhete a: i.getBilhetes()) {
+                                        System.out.println(a.toString());
+                                        ingresso++;
+                                    }
+                                }
+                                System.out.println("\n\nQuantidade de ingressos vendidos: "+ ingresso);
+                                System.out.println("Digite algo para continuar!");
+                                Ler.umaString();
+                            }
                             break;
                         case 0:
                             break;
