@@ -42,7 +42,7 @@ public class Menu {
         System.out.println("|                 ESPETÁCULO                     |");
         System.out.println("..................................................");
         System.out.println("| 1 -> Adicionar novo Espetáculo                 |");
-        System.out.println("| 2 -> Modificar os Bilhetes do Espetaculo       |");
+        System.out.println("| 2 -> Bilheteria do Espetáculo                  |");
         System.out.println("| 3 -> Remover Espetáculo                        |");
         System.out.println("| 4 -> Consultar Espetáculo                      |");
         System.out.println("| 5 -> Clonar Espetáculo                         |");
@@ -81,7 +81,7 @@ public class Menu {
         System.out.println("|                 BILHETEIRA                     |");
         System.out.println("..................................................");
         System.out.println("| 1 -> Comprar Bilhete                           |");
-        System.out.println("| 2 -> Desconto do Bilhete                       |");
+        System.out.println("| 2 -> Comprar Bilhete com desconto              |");
         System.out.println("| 3 -> Consultar Bilhete                         |");
         System.out.println("| 4 -> Clonar Bilhete                            |");
         System.out.println("| 0 -> Voltar para o menu principal              |");
