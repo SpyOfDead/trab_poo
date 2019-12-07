@@ -1,10 +1,10 @@
-package poo;
+package projetoCompleto;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Main {
+public class ola {
     public static void main(String[] args) {
 
         ArrayList<Espetaculo> listaEspetaculo = new ArrayList<Espetaculo>();
@@ -279,6 +279,7 @@ public class Main {
                                     listaEspetaculo.add(espetaculo);
                                     erro = false;
                                     System.out.println("\nEspetaculo criado com sucesso!");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
 
 
                                 } catch (Exception e) {
@@ -310,6 +311,7 @@ public class Main {
                                                     i.adicionarBiblete(bilhete);
                                                     erro = false;
                                                     System.out.println("\nBilhete comprado com sucesso!");
+                                                    Database.guardarDados(listaArtista, listaEspetaculo);
 
                                                 } catch (Exception e) {
                                                     erro = true;
@@ -340,6 +342,7 @@ public class Main {
                                                     i.adicionarBiblete(bilhete);
                                                     erro = false;
                                                     System.out.println("\nBilhete com desconto comprado com sucesso!");
+                                                    Database.guardarDados(listaArtista, listaEspetaculo);
 
                                                 } catch (Exception e) {
                                                     erro = true;
@@ -372,6 +375,7 @@ public class Main {
                                 if(i.getId() == id) {
                                     listaEspetaculo.remove(i);
                                     System.out.println("O espetaculo de ID " + id + " foi removido com sucesso!");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
                                     break;
                                 }
                             }
@@ -392,6 +396,7 @@ public class Main {
                                 if(i.getId() == id) {
                                     listaEspetaculo.add((Espetaculo) i.clone());
                                     System.out.println("O espetaculo de ID " + id + " foi clonado com sucesso!");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
                                     break;
                                 }
                             }
@@ -426,8 +431,29 @@ public class Main {
                             erro = true;
                             break;
                         case 2:
+                        	System.out.println("Forneça o ID do espetaculo: ");
+                            id = Ler.umInt();
+                            for (Espetaculo i : listaEspetaculo) {
+                                if(i.getId() == id) {
+                                		System.out.println("Horario do Inicio do Espetaculo "+ i.getHoraInicio() + "\nHorario do Fim do Espetaculo " + i.getHoraFim());
+                                    break;
+                                }
+                            }
                             break;
                         case 3:
+                        	Espetaculo espetaculo = null;
+                            for(Espetaculo i: listaEspetaculo) {
+                            	if(espetaculo == null) {
+                            		espetaculo = i;
+                            	}
+                            	else {
+                            		if(espetaculo.getBilhetes().size() <= i.getBilhetes().size()) {
+                            			espetaculo = i;
+                            		}
+                            	}
+                            }
+                            
+                            System.out.println("ID do Espetaculo mais Visto: "+ espetaculo.getId() + "Com " + espetaculo.getBilhetes().size() + " Vizitantes\n");
                             break;
                         case 4:
                             while (erro == true) {
@@ -462,8 +488,16 @@ public class Main {
                                         : "No momento, apenas 1 artista trabalha no circo");
                             }
                             break;
-                        case 6:
-                            break;
+                        case 6:                        	
+	                        int total = 0; 
+	                        for (Espetaculo i : listaEspetaculo) {
+	                        	
+	                        	if(i.getData().getDayOfYear() < LocalDate.now().getDayOfYear()) {
+	                        		total++;
+	                        	}
+	                        }
+                        System.out.println("O Total de Espetaculos Já Realizados: "+ total);
+                        break;
                         case 7:
                             while (erro == true) {
                                 try {
@@ -515,6 +549,17 @@ public class Main {
                             erro = true;
                             break;
                         case 9:
+                        	int ingresso = 0;
+                        	for(Espetaculo i: listaEspetaculo) {
+                        		
+                        		for(Bilhete a: i.getBilhetes()) {
+                        			System.out.println(a.toString());
+                        			ingresso++;
+                        		}
+                        	}
+                        	System.out.println("\n\nQuantidade de ingressos vendidos: "+ ingresso);
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
                             break;
                         case 0:
                             break;
