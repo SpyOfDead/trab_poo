@@ -18,9 +18,9 @@ public class Main {
 
         // Variaveis usadas
 
-        int id, idp, ano, mes, dia, duracaoH, duracaoM, horaInicioH, horaInicioM, horaFimH, horaFimM, tamanho, op = 1;
+        int id, idp, ano, mes, dia, duracaoH, duracaoM, horaInicioH, horaInicioM, horaFimH, horaFimM, tamanho, op = 1, count = 0;
         String nome, primeiroNome, segundoNome, sexo, tipo, paisOrigem, local;
-        double salario;
+        double salario, countSalario = 0, countPreco = 0;
         LocalDate dataNascimento;
         boolean erro = true;
 
@@ -67,6 +67,8 @@ public class Main {
                                     Artista novoArtista = new Artista(p1, tipo, salario);
                                     Database.adicionarArtista(listaArtista, novoArtista);
                                     System.out.println(novoArtista.toString());
+                                    System.out.println("Artista criado com sucesso!");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
                                     erro = false;
                                 } catch (Exception e) {
                                     erro = true;
@@ -80,6 +82,11 @@ public class Main {
                         case 2:
                             while (erro == true) {
                                 try {
+                                    if (listaArtista.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
                                     System.out.println("ID do Artista que quer modificar");
                                     idp = Ler.umInt();
                                     Artista mod = Database.acharArtistaPorID(listaArtista, idp);
@@ -107,6 +114,8 @@ public class Main {
                                     System.out.println("Salario do Artista");
                                     mod.setSalario(Ler.umDouble());
                                     System.out.println(mod.toString());
+                                    System.out.println("Artista modificado com sucesso!");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
                                     erro = false;
                                 } catch (Exception e) {
                                     erro = true;
@@ -121,10 +130,16 @@ public class Main {
                         case 3:
                             while (erro == true) {
                                 try {
+                                    if (listaArtista.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
                                     System.out.println("ID do Artista que quer remover");
                                     idp = Ler.umInt();
                                     Database.removerArtistaID(listaArtista, Database.acharArtistaPorID(listaArtista, idp));
                                     System.out.println("Artista de ID:" + idp + " removido com sucesso!");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
                                     erro = false;
                                 } catch (Exception e) {
                                     erro = true;
@@ -138,12 +153,18 @@ public class Main {
                         case 4:
                             while (erro == true) {
                                 try {
+                                    if (listaArtista.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
                                     System.out.println("ID do Artista que quer aumentar o salario");
                                     idp = Ler.umInt();
                                     Artista mod = Database.acharArtistaPorID(listaArtista, idp);
                                     System.out.println("Em quantos % deseja aumentar o salario? ");
                                     mod.aumentarSalario(Ler.umDouble());
                                     System.out.println("Salario do artista " + mod.getId() + " alterado com sucesso!\nNovo salario: " + mod.getSalario() + "$");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
                                     erro = false;
                                 } catch (Exception e) {
                                     erro = true;
@@ -157,12 +178,18 @@ public class Main {
                         case 5:
                             while (erro == true) {
                                 try {
+                                    if (listaArtista.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
                                     System.out.println("ID do Artista que quer diminuir o salario");
                                     idp = Ler.umInt();
                                     Artista mod = Database.acharArtistaPorID(listaArtista, idp);
                                     System.out.println("Em quantos % deseja diminuir o salario? ");
                                     mod.diminuirSalario(Ler.umDouble());
                                     System.out.println("Salario do artista " + mod.getId() + " alterado com sucesso!\nNovo salario: " + mod.getSalario() + "$");
+                                    Database.guardarDados(listaArtista, listaEspetaculo);
                                     erro = false;
                                 } catch (Exception e) {
                                     erro = true;
@@ -176,6 +203,11 @@ public class Main {
                         case 6:
                             while (erro == true) {
                                 try {
+                                    if (listaArtista.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
                                     System.out.println("ID do Artista que deseja consultar");
                                     idp = Ler.umInt();
                                     Artista mod = Database.acharArtistaPorID(listaArtista, idp);
@@ -193,6 +225,11 @@ public class Main {
                         case 7:
                             while (erro == true) {
                                 try {
+                                    if (listaArtista.size() < 1) {
+                                    System.out.println("A base de dados se encontra vazia!");
+                                    erro = false;
+                                    break;
+                                    }
                                     for (Artista i : listaArtista ) {
                                         System.out.println(i.toString());
                                         System.out.println("--------");
@@ -367,12 +404,55 @@ public class Main {
                     Menu.menuTenda();
                     switch (Ler.umInt()) {
                         case 1:
+                            while (erro == true) {
+                                try {
+                                    if (listaEspetaculo.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
+                                    System.out.println("ID do Espetaculo que pretende consultar os bilhetes");
+                                    idp = Ler.umInt();
+                                    Espetaculo mod = Database.acharEspetaculoPorID(listaEspetaculo, idp);
+                                    System.out.println("O espetaculo de ID " + idp + " tem " + (mod.getTamanho() - mod.getBilhetes().size()) + " bilhetes disponiveis");
+                                    erro = false;
+                                } catch (Exception e) {
+                                    erro = true;
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
+                            erro = true;
                             break;
                         case 2:
                             break;
                         case 3:
                             break;
                         case 4:
+                            while (erro == true) {
+                                try {
+                                    if (listaEspetaculo.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
+                                    for (Espetaculo i : listaEspetaculo) {
+                                        for (Bilhete b : i.getBilhetes()){
+                                            count++;
+                                        }
+                                    }
+                                    System.out.println("No total, o circo ja vendeu " + count + " bilhetes!");
+                                    erro = false;
+                                    count = 0;
+                                } catch (Exception e) {
+                                    erro = true;
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
+                            erro = true;
                             break;
                         case 5:
                             if (listaArtista.size() == 0) {
@@ -385,8 +465,54 @@ public class Main {
                         case 6:
                             break;
                         case 7:
+                            while (erro == true) {
+                                try {
+                                    if (listaEspetaculo.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
+                                    for (Espetaculo e : listaEspetaculo) {
+                                        for (Bilhete b : e.getBilhetes()){
+                                            countPreco += b.getPreco();
+                                        }
+                                    }
+
+                                    System.out.println("Neste mes, o circo gastou " + countSalario + " $ em despezas!");
+                                    erro = false;
+                                    countSalario = 0;
+                                } catch (Exception e) {
+                                    erro = true;
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
+                            erro = true;
                             break;
                         case 8:
+                            while (erro == true) {
+                                try {
+                                    if (listaArtista.size() < 1) {
+                                        System.out.println("A base de dados se encontra vazia!");
+                                        erro = false;
+                                        break;
+                                    }
+                                    for (Artista a : listaArtista) {
+                                        countSalario += a.getSalario();
+                                    }
+
+                                    System.out.println("Neste mes, o circo gastou " + countSalario + " $ em despezas!");
+                                    erro = false;
+                                    countSalario = 0;
+                                } catch (Exception e) {
+                                    erro = true;
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                            System.out.println("Digite algo para continuar!");
+                            Ler.umaString();
+                            erro = true;
                             break;
                         case 9:
                             break;
