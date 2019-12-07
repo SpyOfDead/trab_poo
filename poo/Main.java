@@ -59,7 +59,7 @@ public class Main {
                                     mes = Ler.umInt();
                                     System.out.println("Dia");
                                     dia = Ler.umInt();
-                                    System.out.println("Tipo do Artista");
+                                    System.out.println("Especialidade do Artista");
                                     tipo = Ler.umaString();
                                     System.out.println("Salario do Artista");
                                     salario = Ler.umDouble();
@@ -109,7 +109,7 @@ public class Main {
                                     dia = Ler.umInt();
                                     dataNascimento = LocalDate.of(ano, mes, dia);
                                     mod.setDataNascimento(dataNascimento);
-                                    System.out.println("Tipo do Artista");
+                                    System.out.println("Especialidade do Artista");
                                     mod.setTipo(Ler.umaString());
                                     System.out.println("Salario do Artista");
                                     mod.setSalario(Ler.umDouble());
