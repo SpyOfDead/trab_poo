@@ -484,7 +484,7 @@ public class Main {
                                             System.out.println("Nenhum Bilhete comprado");
                                         }
                                         else {
-                                            System.out.println("ID do Espetaculo mais Visto: "+ espe.getId() + " Com " + espe.getBilhetes().size() + " Vizitantes\n");
+                                            System.out.println("ID do Espetaculo mais Visto: "+ espe.getId() + " Com " + espe.getBilhetes().size() + " visitantes\n");
                                         }
 
                                     }
