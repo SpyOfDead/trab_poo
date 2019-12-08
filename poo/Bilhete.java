@@ -7,21 +7,25 @@ public class Bilhete implements Serializable {
     private int id;
     private double preco = 15;
     private Pessoa pessoa;
+    private String nomeEspetaculo;
 
-    public Bilhete(int id, String primeiroNome, String segundoNome) {
+    public Bilhete(int id, String primeiroNome, String segundoNome,String nome) {
 
         pessoa = new Pessoa(id, primeiroNome, segundoNome);
         this.id = id;
         this.descontoDoBilhete();
+        nomeEspetaculo = nome;
 
     }
 
     public Bilhete(int id, String primeiroNome, String segundoNome, int anoNascimento,
-                   int mesNascimento, int diaNascimento) {
+                   int mesNascimento, int diaNascimento,String nome) {
 
         pessoa = new Pessoa(id, primeiroNome, segundoNome, anoNascimento, mesNascimento,diaNascimento);
         this.id = id;
+        nomeEspetaculo = nome;
         this.descontoDoBilhete();
+        
 
     }
 
@@ -63,7 +67,7 @@ public class Bilhete implements Serializable {
     }
 
     public String toString() {
-        return "ID: " + id + "\nPreço: " + preco + "\n" + pessoa + "\n\n";
+        return "Nome do Espetaculo: " + nomeEspetaculo + ", ID: "+ id + ", Preço: " + preco + "\n" + pessoa + " \n\n";
     }
 
     public boolean equals(Object bilhete) {
