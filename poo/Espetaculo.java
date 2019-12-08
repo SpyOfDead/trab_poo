@@ -31,6 +31,7 @@ public class Espetaculo implements Serializable {
         this.tamanho = tamanho;
         this.local = local;
         this.data = data;
+        this.tipo = tipo;
         this.horaInicio = horaInicio;
         this.horaFim = horaFim;
         double nu = (Math.random()*1000);
@@ -151,7 +152,7 @@ public class Espetaculo implements Serializable {
     @Override
     public String toString() {
 
-        String aux = "| Total de Espetaculos: " + total + " | ID:  " + id + " | Local: " + local + " | Data: " + data
+        String aux = "| Total de Bilhetes: " + total + " | ID:  " + id + " | Nome: " + tipo  + " | Local: " + local + " | Data: " + data
                 + " | Hora de Início: " + horaInicio + " | Hora do Fim: " + horaFim + " |\n\n";
 
         for(Bilhete i : bilhetes) {
@@ -159,6 +160,13 @@ public class Espetaculo implements Serializable {
             aux = aux + "----- Bilhete -----\n\n" + i;
         }
         return aux;
+
+    }
+    public String consultar() {
+
+        
+        return "| Total de Bilhetes: " + total + " | ID:  " + id + " | Nome: " + tipo  + " | Local: " + local + " | Data: " + data
+                + " | Hora de Início: " + horaInicio + " | Hora do Fim: " + horaFim + " |\n\n";
 
     }
     @Override
