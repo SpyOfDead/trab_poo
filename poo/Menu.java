@@ -52,12 +52,6 @@ public class Menu {
         System.out.println("| Escolha uma Opção:                              ");
 
     }
-    public static void menuAdicionarEspetaculo() {
-
-        System.out.println("..................................................");
-        System.out.println("|            INSERIR NOVO ESPETACULO             |");
-        System.out.println("..................................................");
-    }
 
     public static void menuArtista() {
 
@@ -85,52 +79,10 @@ public class Menu {
         System.out.println("| 1 -> Comprar Bilhete                           |");
         System.out.println("| 2 -> Comprar Bilhete com desconto              |");
         System.out.println("| 3 -> Consultar Bilhete                         |");
-        System.out.println("| 4 -> Clonar Bilhete                            |");
         System.out.println("| 0 -> Voltar                                    |");
         System.out.println("..................................................");
         System.out.println("| Escolha uma Opção:                              ");
     }
-    public static void menuEspetaculoModificar() {
-        System.out.println("..................................................");
-        System.out.println("|             MODIFICAR ESPETÁCULO               |");
-        System.out.println("..................................................");
-        System.out.println("ID do Espetáculo que deseja modificar");
-    }
-    public static void menuEspetaculoRemover() {
-        System.out.println("..................................................");
-        System.out.println("|                  REMOVER ESPETACULO            |");
-        System.out.println("..................................................");
-        System.out.println("ID do Espetáculo que deseja remover");
-    }
-    public static void menuEspetaculoClonar() {
-        System.out.println("..................................................");
-        System.out.println("|               CLONAR ESPETÁCULOS               |");
-        System.out.println("..................................................");
-        System.out.println("ID do Espetáculo que deseja clonar");
 
-    }
-    public static void menuBilheteComprar() {
-        System.out.println("..................................................");
-        System.out.println("|               COMPRAR BILHETE                  |");
-        System.out.println("..................................................");
-        System.out.println("Quantos bilhetes deseja comprar");
-    }
-    public static void menuBilheteDesconto() {
-        System.out.println("..................................................");
-        System.out.println("|               DESCONTO DO BILHETE              |");
-        System.out.println("..................................................");
 
-    }
-    public static void menuBilheteConsultar() {
-        System.out.println("..................................................");
-        System.out.println("|      		      	CONSULTAR                    |");
-        System.out.println("..................................................");
-        System.out.println("ID do Bilhete que deseja verificar");
-    }
-    public static void menuBilheteClonar() {
-        System.out.println("..................................................");
-        System.out.println("|                 CLONAR BILHETES                |");
-        System.out.println("..................................................");
-        System.out.println("ID do Bilhete que deseja clonar");
-    }
 }
