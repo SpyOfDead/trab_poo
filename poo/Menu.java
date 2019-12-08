@@ -27,7 +27,7 @@ public class Menu {
         System.out.println("| 4  -> Total de Bilhetes Vendidos                |");
         System.out.println("| 5  -> Total de Artistas                         |");
         System.out.println("| 6  -> Total de Espetáculos realizados           |");
-        System.out.println("| 7  -> Total de Lucro obtido                     |");
+        System.out.println("| 7  -> Total de Obtido com a venda de ingressos  |");
         System.out.println("| 8  -> Total de de Despesa obtida                |");
         System.out.println("| 9  -> Histórico de vendas                       |");
         System.out.println("| 0  -> Voltar para o menu principal              |");
