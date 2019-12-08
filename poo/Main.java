@@ -246,6 +246,30 @@ public class Main {
                                 Ler.umaString();
                                 erro = true;
                                 break;
+                            case 8:
+                                while (erro == true){
+                                    try {
+                                        System.out.println("Tem certeza que deseja eliminar todos os artistas da sua base de dados? (Sim ou Nao)");
+                                        String str = Ler.umaString().toLowerCase();
+                                        if (str.equals("sim")) {
+                                            listaArtista = Database.limparArtistas(listaArtista);
+                                            System.out.println("Artistas apagados com sucesso!");
+                                            Database.guardarDados(listaArtista, listaEspetaculo);
+                                            erro = false;
+                                        } else {
+                                            System.out.println("Nenhum artista apagado!");
+                                            erro = false;
+                                        }
+
+                                    } catch (Exception e) {
+                                        erro = true;
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
+                                System.out.println("Digite algo para continuar!");
+                                Ler.umaString();
+                                erro = true;
+                                break;
                             case 0:
                                 break;
                         }
@@ -412,14 +436,29 @@ public class Main {
                                 break;
 
                             case 4:
-                                for (Espetaculo i : listaEspetaculo) {
-                                    System.out.println("\n" + i.consultar());
+                                while (erro == true) {
+                                    try {
+                                        if (listaEspetaculo.size() == 0){
+                                            System.out.println("A base de dados esta vazia!");
+                                            erro = false;
+                                            break;
+                                        } else {
+                                            for (Espetaculo i : listaEspetaculo) {
+                                                System.out.println("\n" + i.consultar());
+                                            }
+                                            erro = false;
+                                        }
+
+                                    } catch (Exception e) {
+                                        System.out.println(e.getMessage());
+                                        erro = true;
+                                    }
                                 }
                                 System.out.println("Digite algo para continuar!");
                                 Ler.umaString();
+                                erro = true;
                                 break;
                             case 5:
-
                                 Menu.menuEspetaculoClonar();
                                 id = Ler.umInt();
                                 for (Espetaculo i : listaEspetaculo) {
@@ -430,6 +469,29 @@ public class Main {
                                         break;
                                     }
                                 }
+                                break;
+                            case 6:
+                                while (erro == true){
+                                    try {
+                                        System.out.println("Tem certeza que deseja eliminar todos os espetaculos da sua base de dados? (Sim ou Nao)");
+                                        String str = Ler.umaString().toLowerCase();
+                                        if (str.equals("sim")) {
+                                            listaEspetaculo = Database.limparEspetaculos(listaEspetaculo);
+                                            System.out.println("Espetaculos apagados com sucesso!");
+                                            Database.guardarDados(listaArtista, listaEspetaculo);
+                                            erro = false;
+                                        } else {
+                                            System.out.println("Nenhum Espetaculo apagado!");
+                                            erro = false;
+                                        }
+                                    } catch (Exception e) {
+                                        erro = true;
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
+                                System.out.println("Digite algo para continuar!");
+                                Ler.umaString();
+                                erro = true;
                                 break;
                             case 0:
                                 break;
@@ -610,7 +672,7 @@ public class Main {
                                     }
                                 }
                                 System.out.println("Digite algo para continuar!");
-                                Ler.umaString(); 
+                                Ler.umaString();
                                 erro = true;
                                 break;
                             case 8:
