@@ -610,7 +610,7 @@ public class Main {
                                     }
                                 }
                                 System.out.println("Digite algo para continuar!");
-                                Ler.umaString();
+                                Ler.umaString(); 
                                 erro = true;
                                 break;
                             case 8:
