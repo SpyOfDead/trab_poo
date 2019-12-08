@@ -21,8 +21,8 @@ public class Espetaculo implements Serializable {
         horaInicio = LocalTime.of(0, 0);
         horaFim = LocalTime.of(0, 0);
         tamanho = 100;
-        double nu = (Math.random()*100);
-        id = (int)nu%100;
+        double nu = (Math.random()*1000);
+        id = (int)nu%1000;
 
     }
 
@@ -164,7 +164,7 @@ public class Espetaculo implements Serializable {
     }
     public String consultar() {
 
-        
+
         return "| Total de Bilhetes: " + total + " | ID:  " + id + " | Nome: " + tipo  + " | Local: " + local + " | Data: " + data
                 + " | Hora de Início: " + horaInicio + " | Hora do Fim: " + horaFim + " |\n\n";
 
@@ -173,7 +173,8 @@ public class Espetaculo implements Serializable {
     public Object clone() {
 
         Espetaculo aux = new Espetaculo(tipo, local, data, horaInicio, horaFim, tamanho);
-        aux.setId(this.id);
+        double nu = (Math.random()*1000);
+        aux.setId((int)nu%1000);
         return aux;
 
     }
