@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Main {
+public class ola {
     public static void main(String[] args) {
 
         ArrayList<Espetaculo> listaEspetaculo = new ArrayList<Espetaculo>();
@@ -291,11 +291,11 @@ public class Main {
                                         System.out.println("Local do Espetáculo");
                                         local = Ler.umaString();
                                         System.out.println("Data do Espetáculo");
-                                        System.out.println("Ano");
+                                        System.out.println(" -Ano do Espetaculo");
                                         ano = Ler.umInt();
-                                        System.out.println("Mês");
+                                        System.out.println(" -Mês do Espetaculo");
                                         mes = Ler.umInt();
-                                        System.out.println("Dia");
+                                        System.out.println(" -Dia do Espetaculo");
                                         dia = Ler.umInt();
                                         System.out.println("Hora de Inicio do Espetáculo");
                                         horaInicioH = Ler.umInt();
@@ -322,7 +322,7 @@ public class Main {
                                 erro = true;
                                 break;
                             case 2:
-                                System.out.println("O ID do Espetaculo:");
+                            	System.out.println("O ID do Espetaculo:");
                                 id = Ler.umInt();
                                 for (Espetaculo i : listaEspetaculo) {
 
@@ -421,7 +421,7 @@ public class Main {
                                 }
                                 break;
                             case 3:
-                                // ASKLDJASLKDJSALDKJASLKDJSALKDJASDLKSAJDSLAKDJASLKDJASLKDJASLKDJASLKDJKL
+                                System.out.println("ID do Espetaculo Que Deseja Remover:");
                                 id = Ler.umInt();
                                 for (Espetaculo i : listaEspetaculo) {
                                     if(i.getId() == id) {
@@ -431,8 +431,9 @@ public class Main {
                                         break;
                                     }
                                 }
+                                System.out.println("Digite algo para continuar!");
+                                Ler.umaString();
                                 break;
-
                             case 4:
                                 while (erro == true) {
                                     try {
@@ -457,16 +458,19 @@ public class Main {
                                 erro = true;
                                 break;
                             case 5:
-                                // lasjdlaskjdlasjdalskdjalskdjsladkjasldk
+                                System.out.println("ID do Espetaculo Que Deseja Clonar:");
                                 id = Ler.umInt();
                                 for (Espetaculo i : listaEspetaculo) {
                                     if(i.getId() == id) {
-                                        listaEspetaculo.add((Espetaculo) i.clone());
-                                        System.out.println("O espetaculo de ID " + id + " foi clonado com sucesso!");
+                                    	Espetaculo espetaculoClonado = (Espetaculo) i.clone();
+                                        listaEspetaculo.add(espetaculoClonado);
+                                        System.out.println("O espetaculo de ID " + id + " foi clonado com sucesso!\nO Clone Esta Com ID "+ espetaculoClonado.getId());
                                         Database.guardarDados(listaArtista, listaEspetaculo);
                                         break;
                                     }
                                 }
+                                System.out.println("Digite algo para continuar!");
+                                Ler.umaString();
                                 break;
                             case 6:
                                 while (erro == true){
