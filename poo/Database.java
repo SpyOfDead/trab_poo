@@ -114,4 +114,26 @@ public class Database {
             throw new EspetaculoNaoEncontradoException("O espetaculo que esta tentando remover nao existe!");
         }
     }
+
+    public static ArrayList<Artista> limparArtistas(ArrayList<Artista> listaArtistas) throws ListaVaziaException {
+
+        if (listaArtistas.size() == 0) {
+            throw new ListaVaziaException("A database ja se encontra vazia!");
+        }
+       listaArtistas.clear();
+
+        return listaArtistas;
+    }
+
+    public static ArrayList<Espetaculo> limparEspetaculos(ArrayList<Espetaculo> listaEspetaculo) throws ListaVaziaException {
+
+        if (listaEspetaculo.size() == 0) {
+            throw new ListaVaziaException("A database ja se encontra vazia!");
+        }
+        listaEspetaculo.clear();
+
+        return listaEspetaculo;
+    }
+
+
 }
