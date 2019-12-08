@@ -46,6 +46,7 @@ public class Menu {
         System.out.println("| 3 -> Remover Espetáculo                        |");
         System.out.println("| 4 -> Consultar Espetáculo                      |");
         System.out.println("| 5 -> Clonar Espetáculo                         |");
+        System.out.println("| 6 -> Apagar todos os Espetáculos               |");
         System.out.println("| 0 -> Voltar para o menu principal              |");
         System.out.println("..................................................");
         System.out.println("| Escolha uma Opção:                              ");
@@ -70,6 +71,7 @@ public class Menu {
         System.out.println("| 5 -> Diminuir o salário do Artista             |");
         System.out.println("| 6 -> Consultar Artista                         |");
         System.out.println("| 7 -> Listar  Artistas                          |");
+        System.out.println("| 8 -> Apagar todos os Artistas                  |");
         System.out.println("| 0 -> Voltar para menu principal                |");
         System.out.println("..................................................");
         System.out.println("| Escolha uma Opção:                              ");
