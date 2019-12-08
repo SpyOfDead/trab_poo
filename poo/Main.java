@@ -412,7 +412,6 @@ public class Main {
                                                     Ler.umaString();
                                                     break;
                                                 case 0:
-
                                                     break;
                                             }
                                         }
@@ -422,8 +421,7 @@ public class Main {
                                 }
                                 break;
                             case 3:
-
-                                Menu.menuEspetaculoRemover();
+                                // ASKLDJASLKDJSALDKJASLKDJSALKDJASDLKSAJDSLAKDJASLKDJASLKDJASLKDJASLKDJKL
                                 id = Ler.umInt();
                                 for (Espetaculo i : listaEspetaculo) {
                                     if(i.getId() == id) {
@@ -459,7 +457,7 @@ public class Main {
                                 erro = true;
                                 break;
                             case 5:
-                                Menu.menuEspetaculoClonar();
+                                // lasjdlaskjdlasjdalskdjalskdjsladkjasldk
                                 id = Ler.umInt();
                                 for (Espetaculo i : listaEspetaculo) {
                                     if(i.getId() == id) {
