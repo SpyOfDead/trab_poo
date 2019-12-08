@@ -30,7 +30,7 @@ public class Menu {
         System.out.println("| 7  -> Total de Lucro obtido                     |");
         System.out.println("| 8  -> Total de de Despesa obtida                |");
         System.out.println("| 9  -> Histórico de vendas                       |");
-        System.out.println("| 0  -> Sair                                      |");
+        System.out.println("| 0  -> Voltar para o menu principal              |");
         System.out.println("...................................................");
         System.out.println("| Escolha uma Opção:	      					  |");
 
@@ -84,7 +84,7 @@ public class Menu {
         System.out.println("| 2 -> Comprar Bilhete com desconto              |");
         System.out.println("| 3 -> Consultar Bilhete                         |");
         System.out.println("| 4 -> Clonar Bilhete                            |");
-        System.out.println("| 0 -> Voltar para o menu principal              |");
+        System.out.println("| 0 -> Voltar                                    |");
         System.out.println("..................................................");
         System.out.println("| Escolha uma Opção:                              ");
     }
